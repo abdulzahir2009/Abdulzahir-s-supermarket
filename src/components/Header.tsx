@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "./Logo";
 
-type Page = "home" | "products" | "product-detail" | "cart" | "checkout" | "search" | "deals" | "account" | "order-confirm";
+type Page = "home" | "products" | "product-detail" | "cart" | "checkout" | "search" | "deals" | "order-confirm";
 
 type HeaderProps = {
   cartCount: number;
@@ -25,7 +25,6 @@ export default function Header({ cartCount, onNavigate, currentPage, onSearch }:
   const navLinks: { label: string; page: Page }[] = [
     { label: "Home", page: "home" },
     { label: "Categories", page: "products" },
-    { label: "Fresh Produce", page: "products" },
     { label: "Deals", page: "deals" },
     { label: "About", page: "home" },
   ];
@@ -83,23 +82,6 @@ export default function Header({ cartCount, onNavigate, currentPage, onSearch }:
 
           {/* Right icons */}
           <div className="flex items-center gap-1 sm:gap-2">
-            <button
-              onClick={() => onNavigate("account")}
-              className="hidden sm:flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005691" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-              <span className="text-xs" style={{ color: "#333", fontFamily: "Open Sans, sans-serif" }}>Account</span>
-            </button>
-
-            <button className="hidden sm:flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg hover:bg-gray-50 transition-colors">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005691" strokeWidth="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-              <span className="text-xs" style={{ color: "#333", fontFamily: "Open Sans, sans-serif" }}>Wishlist</span>
-            </button>
-
             <button
               onClick={() => onNavigate("cart")}
               className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg hover:bg-gray-50 transition-colors relative"

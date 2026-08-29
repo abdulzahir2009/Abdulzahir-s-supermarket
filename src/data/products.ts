@@ -195,6 +195,7 @@ export const products: Product[] = [
 ];
 
 export const categories = [
+  { name: "Fresh Produce", count: 248, emoji: "🥬", color: "#edf7e8", icon: "fresh" },
   { name: "Fruits & Vegetables", count: 124, emoji: "🥦", color: "#edf7e8", icon: "leaf" },
   { name: "Meat & Seafood", count: 68, emoji: "🥩", color: "#fef3f2", icon: "meat" },
   { name: "Dairy & Eggs", count: 45, emoji: "🥛", color: "#eff6ff", icon: "milk" },

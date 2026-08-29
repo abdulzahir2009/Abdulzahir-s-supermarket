@@ -10,6 +10,14 @@ type ProductListPageProps = {
 
 const sortOptions = ["Featured", "Price: Low to High", "Price: High to Low", "Rating", "Newest"];
 
+const freshProduceCategories = ["Fruits & Vegetables", "Dairy & Eggs", "Meat & Seafood"];
+
+function matchesCategory(category: string, selectedCategory: string) {
+  if (selectedCategory === "All") return true;
+  if (selectedCategory === "Fresh Produce") return freshProduceCategories.includes(category);
+  return category === selectedCategory;
+}
+
 export default function ProductListPage({ onNavigate, onAddToCart }: ProductListPageProps) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("Featured");
@@ -18,7 +26,7 @@ export default function ProductListPage({ onNavigate, onAddToCart }: ProductList
 
   let filtered = selectedCategory === "All"
     ? products
-    : products.filter((p) => p.category === selectedCategory);
+    : products.filter((p) => matchesCategory(p.category, selectedCategory));
 
   filtered = filtered.filter((p) => p.price <= maxPrice);
 

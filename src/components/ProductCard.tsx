@@ -4,13 +4,11 @@ import type { Product } from "../data/products";
 type ProductCardProps = {
   product: Product;
   onAddToCart?: (product: Product) => void;
-  onWishlist?: (id: number) => void;
   onClick?: (product: Product) => void;
 };
 
-export default function ProductCard({ product, onAddToCart, onWishlist, onClick }: ProductCardProps) {
+export default function ProductCard({ product, onAddToCart, onClick }: ProductCardProps) {
   const [added, setAdded] = useState(false);
-  const [wishlisted, setWishlisted] = useState(false);
 
   function handleAddToCart(e: React.MouseEvent) {
     e.stopPropagation();
@@ -18,12 +16,6 @@ export default function ProductCard({ product, onAddToCart, onWishlist, onClick 
     setAdded(true);
     onAddToCart?.(product);
     setTimeout(() => setAdded(false), 2000);
-  }
-
-  function handleWishlist(e: React.MouseEvent) {
-    e.stopPropagation();
-    setWishlisted(!wishlisted);
-    onWishlist?.(product.id);
   }
 
   return (
@@ -62,19 +54,6 @@ export default function ProductCard({ product, onAddToCart, onWishlist, onClick 
             {product.badge}
           </span>
         )}
-        {/* Wishlist */}
-        <button
-          onClick={handleWishlist}
-          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white flex items-center justify-center"
-          style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.12)", transition: "transform 0.2s" }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.15)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-          aria-label="Add to wishlist"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill={wishlisted ? "#ef4444" : "none"} stroke={wishlisted ? "#ef4444" : "#666"} strokeWidth="2">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </button>
         {/* Out of stock overlay */}
         {!product.inStock && (
           <div className="absolute inset-0 bg-white/70 flex items-center justify-center">

@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import { SOCIAL_LINKS } from "../config/site";
 
 type FooterProps = {
   onNavigate: (page: string) => void;
@@ -23,15 +24,22 @@ export default function Footer({ onNavigate }: FooterProps) {
               Fresh groceries, everyday essentials, and quality products delivered conveniently to your door. Your trusted supermarket, now online.
             </p>
             <div className="flex gap-3 mt-5">
-              {["facebook", "twitter", "instagram", "whatsapp"].map((social) => (
+              {Object.entries(SOCIAL_LINKS).map(([social, href]) => (
                 <a
                   key={social}
-                  href="#"
+                  href={href.startsWith("REPLACE_") ? undefined : href}
                   className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
                   style={{ background: "rgba(255,255,255,0.1)" }}
                   onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "#6AB04C")}
                   onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.1)")}
                   aria-label={social}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  onClick={(e) => {
+                    if (href.startsWith("REPLACE_")) {
+                      e.preventDefault();
+                    }
+                  }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
                     {social === "facebook" && <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>}
@@ -64,24 +72,6 @@ export default function Footer({ onNavigate }: FooterProps) {
             </ul>
           </div>
 
-          {/* Company */}
-          <div>
-            <h4 className="font-bold text-sm mb-4 text-white" style={{ fontFamily: "Montserrat, sans-serif", letterSpacing: "0.05em" }}>COMPANY</h4>
-            <ul className="space-y-2.5">
-              {["About Us", "Our Story", "Contact", "Careers", "FAQs", "Delivery Info", "Returns"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm transition-colors"
-                    style={{ color: "#a8d8f0", fontFamily: "Open Sans, sans-serif" }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#6AB04C")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#a8d8f0")}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact */}
           <div>
             <h4 className="font-bold text-sm mb-4 text-white" style={{ fontFamily: "Montserrat, sans-serif", letterSpacing: "0.05em" }}>CONTACT</h4>
@@ -109,17 +99,6 @@ export default function Footer({ onNavigate }: FooterProps) {
           <p className="text-xs" style={{ color: "#a8d8f0", fontFamily: "Open Sans, sans-serif" }}>
             © 2026 Abdul&apos;s Enterprise Supermarket. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            {["Privacy Policy", "Terms & Conditions", "Cookie Policy"].map((item) => (
-              <a key={item} href="#" className="text-xs transition-colors"
-                style={{ color: "#a8d8f0", fontFamily: "Open Sans, sans-serif" }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "white")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#a8d8f0")}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

@@ -8,7 +8,6 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import SearchPage from "./pages/SearchPage";
 import DealsPage from "./pages/DealsPage";
-import AccountPage from "./pages/AccountPage";
 import OrderConfirmPage from "./pages/OrderConfirmPage";
 import type { Product } from "./data/products";
 
@@ -20,7 +19,6 @@ type Page =
   | "checkout"
   | "search"
   | "deals"
-  | "account"
   | "order-confirm";
 
 type CartItem = { product: Product; qty: number };
@@ -71,10 +69,6 @@ export default function App() {
     setCartItems((prev) => prev.filter((i) => i.product.id !== id));
   }
 
-  function handleOrderComplete() {
-    setCartItems([]);
-  }
-
   const cartCount = cartItems.reduce((s, i) => s + i.qty, 0);
 
   const showFooter = !["checkout", "order-confirm"].includes(page);
@@ -98,14 +92,13 @@ export default function App() {
           <CartPage items={cartItems} onUpdateQty={updateQty} onRemove={removeFromCart} onNavigate={(p) => navigate(p)} />
         )}
         {page === "checkout" && (
-          <CheckoutPage items={cartItems} onNavigate={(p) => navigate(p)} onOrderComplete={handleOrderComplete} />
+          <CheckoutPage items={cartItems} onNavigate={(p) => navigate(p)} />
         )}
         {page === "search" && (
           <SearchPage query={searchQuery} onNavigate={navigate} onAddToCart={addToCart} />
         )}
         {page === "deals" && <DealsPage onNavigate={navigate} onAddToCart={addToCart} />}
-        {page === "account" && <AccountPage />}
-        {page === "order-confirm" && <OrderConfirmPage onNavigate={(p) => navigate(p)} />}
+        {page === "order-confirm" && <OrderConfirmPage items={cartItems} onNavigate={(p) => navigate(p)} />}
       </main>
 
       {showFooter && <Footer onNavigate={(p) => navigate(p)} />}
@@ -118,14 +111,13 @@ export default function App() {
         {[
           { label: "Home", p: "home", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg> },
           { label: "Categories", p: "products", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> },
-          { label: "Deals", p: "deals", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> },
+          { label: "Search", p: "search", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
           { label: "Cart", p: "cart", icon: (
             <div className="relative">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
               {cartCount > 0 && <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full text-white flex items-center justify-center" style={{ background: "#6AB04C", fontSize: 8, fontFamily: "Montserrat, sans-serif", fontWeight: 700 }}>{cartCount}</span>}
             </div>
           )},
-          { label: "Account", p: "account", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
         ].map(({ label, p, icon }) => (
           <button
             key={p}
