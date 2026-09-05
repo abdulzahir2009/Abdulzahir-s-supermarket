@@ -9,6 +9,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import SearchPage from "./pages/SearchPage";
 import DealsPage from "./pages/DealsPage";
 import OrderConfirmPage from "./pages/OrderConfirmPage";
+import AboutPage from "./pages/AboutPage";
 import type { Product } from "./data/products";
 
 type Page =
@@ -19,6 +20,7 @@ type Page =
   | "checkout"
   | "search"
   | "deals"
+  | "about"
   | "order-confirm";
 
 type CartItem = { product: Product; qty: number };
@@ -98,6 +100,7 @@ export default function App() {
           <SearchPage query={searchQuery} onNavigate={navigate} onAddToCart={addToCart} />
         )}
         {page === "deals" && <DealsPage onNavigate={navigate} onAddToCart={addToCart} />}
+        {page === "about" && <AboutPage onNavigate={navigate} />}
         {page === "order-confirm" && <OrderConfirmPage items={cartItems} onNavigate={(p) => navigate(p)} />}
       </main>
 

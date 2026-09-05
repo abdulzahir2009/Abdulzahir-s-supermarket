@@ -29,12 +29,12 @@ export default function HomePage({ onNavigate, onAddToCart }: HomePageProps) {
 
   const categoryImages: Record<string, string> = {
     "Fruits & Vegetables": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=200&h=200&fit=crop&auto=format",
-    "Meat & Seafood": "https://images.unsplash.com/photo-1604503468506-a8da13d11d36?w=200&h=200&fit=crop&auto=format",
+    "Meat & Seafood": "https://media.istockphoto.com/id/505207430/photo/fresh-raw-beef-steak.jpg?s=612x612&w=0&k=20&c=QxOege3Io4h1TNJLtGYh71rxb29p1BfFcZvCipz4WVY=",
     "Dairy & Eggs": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200&h=200&fit=crop&auto=format",
     "Bakery": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop&auto=format",
     "Beverages": "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=200&h=200&fit=crop&auto=format",
     "Snacks": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=200&h=200&fit=crop&auto=format",
-    "Pantry Essentials": "https://images.unsplash.com/photo-1536304993881-ff86e0c9b9b1?w=200&h=200&fit=crop&auto=format",
+    "Pantry Essentials": "https://wholefully.com/wp-content/uploads/2022/04/organized-pantry-staples-glass-jars.jpg",
     "Household": "https://images.unsplash.com/photo-1583947581924-860bda6a26df?w=200&h=200&fit=crop&auto=format",
     "Personal Care": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop&auto=format",
   };

@@ -26,7 +26,7 @@ export default function Header({ cartCount, onNavigate, currentPage, onSearch }:
     { label: "Home", page: "home" },
     { label: "Categories", page: "products" },
     { label: "Deals", page: "deals" },
-    { label: "About", page: "home" },
+    { label: "About", page: "about" },
   ];
 
   return (
